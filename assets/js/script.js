@@ -181,7 +181,7 @@ connect with backend
 
     const formData = {
       name: document.querySelector('input[name="name"]').value,
-      phone: document.querySelector('input[name="phone"]').value,
+      phoneNumber: document.querySelector('input[name="phone"]').value,
       email: document.querySelector('input[name="email"]').value,
       quantity: document.querySelector('select[name="Quantity"]').value,
       address: document.querySelector('textarea[name="address"]').value
