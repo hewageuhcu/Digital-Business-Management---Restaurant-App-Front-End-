@@ -168,3 +168,57 @@ window.addEventListener("mousemove", function (event) {
   }
 
 });
+
+/*
+connect with backend
+*/
+
+
+  const button = document.querySelector('#submitBtn');
+  button.addEventListener('click', async function(e) {
+    e.preventDefault();
+    console.log('button clicked');
+
+    const formData = {
+      name: document.querySelector('input[name="name"]').value,
+      phone: document.querySelector('input[name="phone"]').value,
+      email: document.querySelector('input[name="email"]').value,
+      quantity: document.querySelector('select[name="Quantity"]').value,
+      address: document.querySelector('textarea[name="address"]').value
+  };
+
+  console.log('Sending data to backend:', formData.name);
+  console.log('Sending data to backend:', formData.phone);
+  console.log('Sending data to backend:', formData.email);
+console.log('Sending data to backend:', formData.quantity);
+  console.log('Sending data to backend:', formData.address);
+
+  try {
+      console.log('Sending data to backend:', formData);
+
+      // Send data to backend API
+      const response = await fetch('https://localhost:7273/api/Form', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData)
+      });
+
+      if (!response.ok) {
+          throw new Error('Network response was not ok');
+      }
+
+      const result = await response.json();
+      
+      // Show success message
+      alert('Order submitted successfully!');
+      
+      // Optional: Reset form after successful submission
+      form.reset();
+
+  } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('Failed to submit order. Please try again.');
+  }
+  });
